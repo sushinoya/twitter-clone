@@ -1,0 +1,54 @@
+scss_files: 'app/assets/stylesheets/**/*.scss'
+
+exclude:
+  - 'app/assets/stylesheets/application/bootstrap/*.scss'
+
+linters:
+  BangFormat:
+    enabled: true
+  BorderZero:
+    enabled: true
+  ColorKeyword:
+    enabled: true
+  ColorVariable:
+    enabled: true
+  DeclarationOrder:
+    enabled: true
+  EmptyLineBetweenBlocks:
+    enabled: true
+  HexLength:
+    enabled: true
+  HexNotation:
+    enabled: true
+  IdSelector:
+    enabled: true
+  ImportantRule:
+    enabled: true
+  LeadingZero:
+    enabled: true
+  MergeableSelector:
+    enabled: true
+  NestingDepth:
+    enabled: true
+  PropertySortOrder:
+    enabled: true
+  PseudoElement:
+    enabled: false
+  QualifyingElement:
+    enabled: true
+  SelectorDepth:
+    enabled: true
+  SelectorFormat:
+    enabled: true
+  Shorthand:
+    enabled: true
+  SingleLinePerSelector:
+    enabled: true
+  SpaceAfterPropertyColon:
+    enabled: true
+  SpaceBeforeBrace:
+    enabled: true
+  StringQuotes:
+    enabled: true
+  ZeroUnit:
+    enabled: true
