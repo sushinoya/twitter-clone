@@ -33,7 +33,7 @@ module MayInternsTwitterClone
     config.active_record.raise_in_transactional_callbacks = true
 
     # Configure ActiveJob to use sidekiq as queuing backend
-    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_adapter = :sidekiq
 
     config.generators do |g|
       g.test_framework :rspec, view_specs: false

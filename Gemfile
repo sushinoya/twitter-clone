@@ -38,7 +38,7 @@ gem 'bootstrap-sass'
 # Provides easy forms for rails
 gem 'simple_form'
 
-# Allows User Sign-ups and authentication
+# Flexible authentication solution for Rails with Warden.
 gem 'devise'
 
 # Provides nested form field functionality

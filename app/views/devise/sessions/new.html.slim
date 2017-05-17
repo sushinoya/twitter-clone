@@ -1,0 +1,24 @@
+.container
+
+  .row
+  
+    .col-sm-4.col-sm-offset-4
+    
+      .text-center
+        h1 Welcome to Twitter!
+        h2 Log In
+
+      = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |form|
+      
+        = form.input :email
+        = form.input :password
+        
+        - if devise_mapping.rememberable?
+          = form.input :remember_me, as: :boolean
+          
+        = form.button :submit, 'Log In', class: 'btn btn-primary'
+
+      br
+      p Don't have an account? 
+      = render 'devise/shared/links'
+        
