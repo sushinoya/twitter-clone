@@ -3,7 +3,7 @@ html lang='en'
 
   head
 
-    title Rails Project Template
+    title Twitter
 
     meta content='IE=edge' http-equiv='X-UA-Compatible'
     meta charset='utf-8'
@@ -11,15 +11,10 @@ html lang='en'
 
     = stylesheet_link_tag :application, media: 'all', 'data-turbolinks-track': true
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lato:400,400i,700,900'
+    = javascript_include_tag :application, 'data-turbolinks-track': true
 
     = csrf_meta_tags
 
   body lang='en' class=css_class_for_controller_action(controller)
 
-    = render 'common/flash_messages'
-    = render partial: 'header'
     = yield
-    = render 'employers/modals/form_modal'
-    = render partial: 'footer'
-
-    = javascript_include_tag :application, 'data-turbolinks-track': true
