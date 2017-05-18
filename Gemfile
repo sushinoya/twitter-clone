@@ -60,20 +60,18 @@ group :development, :test do
   # Load environment variables from .env into ENV in development
   gem 'dotenv-rails'
 
-
   # Copies an initializer to every rails project
   gem 'pry-rails'
-
 end
 
 group :development do
-# Access an IRB console on exception pages or by using <%= console %> in views
+  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-# Static code analysis
+  # Static code analysis
   gem 'rubocop', require: false
 
-# Mutes assets pipeline log messages.
+  # Mutes assets pipeline log messages.
   gem 'quiet_assets'
 end
 
