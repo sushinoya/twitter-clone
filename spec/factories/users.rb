@@ -4,6 +4,7 @@ FactoryGirl.define do
     password '123123123'
     sequence(:name) { |n| "user#{n}" }
     sequence(:username) { |n| "username#{n}" }
+    sequence(:status) { |n| "status#{n}" }
 
     trait :invalid do
       email nil
