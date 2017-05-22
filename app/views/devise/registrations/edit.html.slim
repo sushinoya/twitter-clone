@@ -1,0 +1,31 @@
+.container
+
+  .row
+
+    .col-sm-4.col-sm-offset-4
+
+      .text-center
+
+        h2 Update Your Account Details
+
+      .row
+
+        .col-xs-12
+
+          = simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |form|
+
+            = form.input :name
+            = form.input :username
+            = form.input :email
+            = form.input :current_password
+            = form.input :password
+            = form.input :password_confirmation
+            = form.button :submit, 'Update', class: 'btn btn-primary pull-left col-xs-4'
+            = link_to 'Do Not Save Changes', :root, class: 'btn btn-warning pull-right col-xs-6'
+
+      hr
+
+      .row
+        .col-xs-12
+          strong Delete Your Twitter Account
+          p = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
