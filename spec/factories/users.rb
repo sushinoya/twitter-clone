@@ -5,7 +5,6 @@ FactoryGirl.define do
     sequence(:name) { |n| "user#{n}" }
     sequence(:username) { |n| "username#{n}" }
 
-
     trait :invalid do
       email nil
     end
