@@ -11,7 +11,7 @@ if Rails.env.development? || Rails.env.test? || Rails.env.staging?
         end
       end
 
-      public_data = %w(users)
+      public_data = %w(users tweets)
       public_data.each(&execute)
 
       puts 'Done adding test data'

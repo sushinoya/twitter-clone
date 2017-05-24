@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   put 'update-status', to: 'status_update#update'
 
+  resources :tweets, only: [:create, :destroy]
+  
 end

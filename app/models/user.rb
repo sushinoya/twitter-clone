@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
+  has_many :tweets, inverse_of: :user
   validates :email, uniqueness: true
   validates :username, uniqueness: true, presence: true
   validates :name, presence: true

@@ -22,6 +22,7 @@ config/database.yml
 coverage/
 
 # Ignore dotenv
+.DS_Store
 .env
 
 # Ignore redis binary dump (dump.rdb) files
