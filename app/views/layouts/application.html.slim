@@ -17,6 +17,10 @@ html lang='en'
 
   body lang='en' class=css_class_for_controller_action(controller)
 
-    = render partial: 'navbar'
+    -if current_user
+      = render partial: '/my/layouts/my_navbar'
+    -else
+      = render partial: 'navbar'
+
     = render partial: 'flash_messages'
     = yield
