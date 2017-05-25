@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StatusUpdateController, type: :controller do
+RSpec.describe My::StatusUpdateController, type: :controller do
 
   let(:user) { create(:user) }
 
