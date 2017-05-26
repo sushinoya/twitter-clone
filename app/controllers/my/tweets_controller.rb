@@ -5,17 +5,17 @@ class My::TweetsController < My::BaseController
   def create
     @tweet = Tweet.new(tweet_post_params.merge(user: current_user))
     if @tweet.save
-      redirect_to root_path, flash: { success: 'Successfully posted tweet' }
+      redirect_to my_root_path, flash: { success: 'Successfully posted tweet' }
     else
-      redirect_to root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
+      redirect_to my_root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
     end
   end
 
   def destroy
     if @tweet.destroy
-      redirect_to root_path, flash: { success: 'Successfully deleted tweet' }
+      redirect_to my_root_path, flash: { success: 'Successfully deleted tweet' }
     else
-      redirect_to root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
+      redirect_to my_root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
     end
   end
 
