@@ -17,9 +17,9 @@ html lang='en'
 
   body lang='en' class=css_class_for_controller_action(controller)
 
-    -if current_user
+    - if current_user
       = render partial: '/my/layouts/my_navbar'
-    -else
+    - else
       = render partial: 'navbar'
 
     = render partial: 'flash_messages'
