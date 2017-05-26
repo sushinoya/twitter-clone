@@ -16,36 +16,23 @@ class My::FollowRequestsController < My::BaseController
   end
 
   def accept
-    if @follow_request.accepted!
-      redirect_to new_my_follow_request_path, flash: { success: "#{sender.name} now follows you!" }
-    else
-      redirect_to new_my_follow_request_path, flash: { error: @follow_request.errors.full_messages.to_sentence }
-    end
+    @follow_request.accepted!
+    redirect_to new_my_follow_request_path, flash: { success: "#{sender.name} now follows you!" }
   end
 
   def resend
-    if @follow_request.pending!
-      redirect_to new_my_follow_request_path, flash: { success: "Friend Request Resent to #{recipient.name}" }
-    else
-      redirect_to new_my_follow_request_path, flash: { error: @follow_request.errors.full_messages.to_sentence }
-    end
+    @follow_request.pending!
+    redirect_to new_my_follow_request_path, flash: { success: "Friend Request Resent to #{recipient.name}" }
   end
 
   def reject
     @follow_request.rejected!
-    if @follow_request.status == 'rejected'
-      redirect_to new_my_follow_request_path, flash: { success: "You rejected #{sender.name}'s follow request!" }
-    else
-      redirect_to new_my_follow_request_path, flash: { error: @follow_request.errors.full_messages.to_sentence }
-    end
+    redirect_to new_my_follow_request_path, flash: { success: "You rejected #{sender.name}'s follow request!" }
   end
 
   def destroy
-    if @follow_request.destroy
-      redirect_to new_my_follow_request_path, flash: { success: "You disallowed #{sender.name} from following you anymore!" }
-    else
-      redirect_to new_my_follow_request_path, flash: { error: @follow_request.errors.full_messages.to_sentence }
-    end
+    @follow_request.destroy
+    redirect_to new_my_follow_request_path, flash: { success: "You disallowed #{sender.name} from following you anymore!" }
   end
 
   private
@@ -67,7 +54,7 @@ class My::FollowRequestsController < My::BaseController
   end
 
   def prepare_follow_requests
-    @unaccepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: ['pending', 'rejected'])
+    @unaccepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: %w(pending rejected))
     @accepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: ['accepted'])
     @recieved_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['pending'])
     @accepted_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['accepted'])

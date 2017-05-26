@@ -17,26 +17,10 @@
 
           p = "(Updated on #{current_user.updated_at.localtime.strftime("%d %b %y")})"
 
-        -unless current_user.tweets.empty?
-          .tweet-container
-            h4 Your Tweets:
-          -current_user.tweets.each do |tweet|
-            .tweet-container
-              .tweet
-                = tweet.text
-              = button_to '×', my_tweet_path(tweet), data: { confirm: 'Are you sure you want to delete the tweet?' }, method: :delete, class: 'btn-xs delete-btn'
-
-      / .text-center
-      /   h4 All Public Tweets:
-      /   -@tweets.each do |tweet|
-      /     p
-      /       b = "#{tweet.user.username}: "
-      /       = "#{tweet.text} (Posted on #{tweet.created_at.localtime.strftime("%d %b %y")})"
-
       .form-container
         = simple_form_for @user, url: my_update_status_path, method: :put do |form|
           .form-input_area
-            = form.input :status, placeholder: 'New Status', label: false, input_html: { maxlength: 20, value: ''}
+            = form.input :status, placeholder: 'New Status', label: false, input_html: { maxlength: 50, value: ''}
           = form.button :submit, 'Update Status', class: 'btn btn-primary form-btn'
       br
 
@@ -45,3 +29,12 @@
           .form-input_area
             = form.input :text, placeholder: 'New Tweet', label: false, input_html: { minlength: 10, maxlength: 140, value: ''}
           = form.button :submit, 'Tweet', class: 'btn btn-warning form-btn'
+
+      -unless current_user.tweets.empty?
+        .tweet-container
+          h4 Your Tweets:
+        -current_user.tweets.each do |tweet|
+          .tweet-container
+            .tweet
+              = tweet.text
+            = button_to '×', my_tweet_path(tweet), data: { confirm: 'Are you sure you want to delete the tweet?' }, method: :delete, class: 'btn-md btn-basic btn-inverse'

@@ -1,5 +1,4 @@
 .my_dashboard.index {
-   background-image: url('background.jpg');
 
   .form-container {
     margin-bottom: 10px;
@@ -31,23 +30,25 @@
 
   .tweet-container {
      display: table;
-     width: 37em;
+     width: 560px;
 
     .tweet {
       display: table-cell;
       vertical-align: middle;
       word-wrap: break-word;
-      width: 560px;
+      max-width:  100px;
       text-align: left;
       height: 25px;
+      margin-right: 10px;
 
     }
 
     .delete-btn {
+      display: table-cell;
       min-height: 10px;
       margin-top: 10px;
-      display: table-cell;
-      vertical-align: middle;
+      margin-left: 10px;
+      vertical-align: center;
       text-align: center;
       width: 32px;
       height: 25px;

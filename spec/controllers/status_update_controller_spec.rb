@@ -16,7 +16,7 @@ RSpec.describe My::StatusUpdateController, type: :controller do
         { status: 'status' }
       end
 
-      it { expect(response).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(my_root_path) }
       it { is_expected.to set_flash[:success] }
 
     end
@@ -24,10 +24,10 @@ RSpec.describe My::StatusUpdateController, type: :controller do
     context 'when user status updates unsuccessfully' do
 
       let(:params) do
-        { status: 'this string is 33 characters long'}
+        { status: 'this string is  > 50 characters long and it will not work so yeah this should fail'}
       end
 
-      it { expect(response).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(my_root_path) }
       it { is_expected.to set_flash[:error] }
 
     end
