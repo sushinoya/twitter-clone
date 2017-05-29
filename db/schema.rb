@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20170524071051) do
   enable_extension "plpgsql"
 
   create_table "follow_requests", force: :cascade do |t|
-    t.integer "sender_id",                        null: false
-    t.integer "recipient_id",                     null: false
-    t.string  "status",       default: "pending"
+    t.integer "sender_id",                null: false
+    t.integer "recipient_id",             null: false
+    t.integer "status",       default: 0
   end
 
   add_index "follow_requests", ["recipient_id"], name: "index_follow_requests_on_recipient_id", using: :btree
