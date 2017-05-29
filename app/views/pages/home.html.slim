@@ -2,24 +2,30 @@
 
   .row
 
-    .col-sm-6.col-sm-offset-1
-
-  .row
-
     .col-sm-3.col-sm-offset-9
+      - if current_user
+        h3 "He who thinks he can and he who thinks he can't are both usually right."
+        h3 "The way one moves ahead is by getting started"
+        h3 "Its not about how hard you hit but how hard you get hit and keep moving forward"
 
-      h2 Sign Up
+        h1 Okay enough with the quotes!
+        h3 Oh I didn't realise you were already logged on. Press the button to return back to Twitter
 
-      = simple_form_for :user, url: registration_path(:user) do |form|
+        = button_to 'Press Me!', my_root_path, method: :get, class: 'btn btn-warning'
 
-        = form.input :name, label: false, placeholder: 'Your Name'
-        = form.input :username, label: false, placeholder: 'Username', hint: 'For eg, @sushinoya'
-        = form.input :email, label: false, placeholder: 'Your Email'
-        = form.input :password, label: false, placeholder: 'Password'
-        = form.input :password_confirmation, label: false, placeholder: 'Re-enter Password'
+      - else
+        h2 Sign Up
 
-        = form.button :submit, 'Sign Up', class: 'btn btn-primary'
+        = simple_form_for :user, url: registration_path(:user) do |form|
 
-      br
-      p Already Have an account?
-      = link_to 'Sign In', new_user_session_path
+          = form.input :name, label: false, placeholder: 'Your Name'
+          = form.input :username, label: false, placeholder: 'Username', hint: 'For eg, @sushinoya'
+          = form.input :email, label: false, placeholder: 'Your Email'
+          = form.input :password, label: false, placeholder: 'Password'
+          = form.input :password_confirmation, label: false, placeholder: 'Re-enter Password'
+
+          = form.button :submit, 'Sign Up', class: 'btn btn-primary'
+
+        br
+        p Already Have an account?
+        = link_to 'Sign In', new_user_session_path

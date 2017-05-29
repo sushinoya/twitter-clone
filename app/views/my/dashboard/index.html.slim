@@ -10,7 +10,7 @@
       .text-center
         h2  Welcome #{current_user.name}!
 
-        -unless current_user.status == '' or current_user.status == nil
+        - unless current_user.status == '' or current_user.status == nil
           p
             b Your Status:&nbsp
             = "#{current_user.status}"
@@ -30,7 +30,7 @@
             = form.input :text, placeholder: 'New Tweet', label: false, input_html: { minlength: 10, maxlength: 140, value: ''}
           = form.button :submit, 'Tweet', class: 'btn btn-warning form-btn'
 
-      -unless current_user.tweets.empty?
+      - unless current_user.tweets.empty?
         .tweet-container
           h4 Your Tweets:
         -current_user.tweets.each do |tweet|

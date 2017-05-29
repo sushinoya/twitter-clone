@@ -3,7 +3,7 @@ class CreateFollowRequests < ActiveRecord::Migration
     create_table :follow_requests do |t|
       t.references :sender,    class: 'user', null: false
       t.references :recipient, class: 'user', null: false
-      t.string    :status,    default: 'pending'
+      t.integer    :status,    default: 'pending'
     end
 
     add_index :follow_requests, [:sender_id, :recipient_id], unique: true
