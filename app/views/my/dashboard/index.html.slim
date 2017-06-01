@@ -25,15 +25,16 @@
       br
 
       .form-container
-        = simple_form_for :tweet, url: my_tweets_path, method: :post do |form|
-          .form-input_area
-            = form.input :text, placeholder: 'New Tweet', label: false, input_html: { minlength: 10, maxlength: 140, value: ''}
+        = simple_form_for @form, url: my_tweets_path, method: :post do |form|
+          = form.fields_for :tweet do |tweet_form|
+            .form-input_area
+              = tweet_form.input :text, placeholder: 'New Tweet', label: false, input_html: { minlength: 10, maxlength: 140, value: ''}
           = form.button :submit, 'Tweet', class: 'btn btn-warning form-btn'
 
       - unless current_user.tweets.empty?
         .tweet-container
           h4 Your Tweets:
-        -current_user.tweets.each do |tweet|
+        - @my_tweets.each do |tweet|
           .tweet-container
             .tweet
               = tweet.text
