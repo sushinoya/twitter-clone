@@ -3,11 +3,11 @@ class TweetsController < ApplicationController
   before_action :prepare_tweet, only: [:destroy]
 
   def create
-    @tweet = Tweet.new(tweet_post_params.merge(user: current_user))
-    if @tweet.save
+    @form = TweetsForm.new(current_user, tweet_post_params[:tweet])
+    if @form.save
       redirect_to root_path, flash: { success: 'Successfully posted tweet' }
     else
-      redirect_to root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
+      redirect_to root_path, flash: { error: @form.tweet.errors.full_messages.to_sentence }
     end
   end
 
@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_post_params
-    params.require(:tweet).permit(:text)
+    params.require(:tweets_form).permit(tweet: [:text])
   end
 
   def prepare_tweet
