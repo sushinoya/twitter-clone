@@ -8,12 +8,12 @@ RSpec.describe My::StatusUpdateController, type: :controller do
 
   describe 'PUT/PATCH #update' do
 
-    before { put :update, user: params }
+    before { put :update, status_update_form: params }
 
     context 'when user status updates successfully' do
 
       let(:params) do
-        { status: 'status' }
+        { user: { status: 'status' } }
       end
 
       it { expect(response).to redirect_to(my_root_path) }
@@ -24,7 +24,7 @@ RSpec.describe My::StatusUpdateController, type: :controller do
     context 'when user status updates unsuccessfully' do
 
       let(:params) do
-        { status: 'this string is  > 50 characters long and it will not work so yeah this should fail'}
+        { user: { status: 'this string is  > 50 characters long and it will not work so yeah this should fail' } }
       end
 
       it { expect(response).to redirect_to(my_root_path) }

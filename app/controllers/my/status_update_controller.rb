@@ -1,7 +1,8 @@
 class My::StatusUpdateController < My::BaseController
 
   def update
-    if current_user.update(account_update_params)
+    @form = StatusUpdateForm.new(current_user)
+    if @form.update(account_update_params[:user])
       redirect_to my_root_path, flash: { success: 'Successfully updated status' }
     else
       redirect_to my_root_path, flash: { error: current_user.errors.full_messages.to_sentence }
@@ -11,7 +12,7 @@ class My::StatusUpdateController < My::BaseController
   private
 
   def account_update_params
-    params.require(:user).permit(:status)
+    params.require(:status_update_form).permit(user: [:status])
   end
 
 end

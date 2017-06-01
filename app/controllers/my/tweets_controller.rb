@@ -7,7 +7,7 @@ class My::TweetsController < My::BaseController
     if @form.save
       redirect_to my_root_path, flash: { success: 'Successfully posted tweet' }
     else
-      redirect_to my_root_path, flash: { error: @tweet.errors.full_messages.to_sentence }
+      redirect_to my_root_path, flash: { error: @form.tweet.errors.full_messages.to_sentence }
     end
   end
 
@@ -22,7 +22,6 @@ class My::TweetsController < My::BaseController
   private
 
   def tweet_post_params
-    byebug
     params.require(:tweet_form).permit(tweet:[:text])
   end
 
