@@ -4,6 +4,7 @@ class FollowRequest < ActiveRecord::Base
   belongs_to :recipient, class_name: 'User'
 
   enum status: [:pending, :accepted, :rejected]
+  scope :sent_unaccepted, -> { where(status: [statuses[:pending], statuses[:rejected]]) }
 
   validates :sender,    presence: true, uniqueness: { scope: [:recipient_id] }
   validates :recipient, presence: true

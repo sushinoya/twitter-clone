@@ -24,18 +24,18 @@ class My::FollowRequestsController < My::BaseController
   end
 
   def resend
-      @follow_request.pending!
-      redirect_to new_my_follow_request_path, flash: { success: "Friend Request Resent to #{@follow_request.recipient.name}" }
+    @follow_request.pending!
+    redirect_to new_my_follow_request_path, flash: { success: "Friend Request Resent to #{@follow_request.recipient.name}" }
   end
 
   def reject
-      @follow_request.rejected!
-      redirect_to new_my_follow_request_path, flash: { success: "You rejected #{@follow_request.sender.name}'s follow request!" }
+    @follow_request.rejected!
+    redirect_to new_my_follow_request_path, flash: { success: "You rejected #{@follow_request.sender.name}'s follow request!" }
   end
 
   def destroy
-      @follow_request.destroy
-      redirect_to new_my_follow_request_path, flash: { success: "You disallowed #{@follow_request.sender.name} from following you anymore!" }
+    @follow_request.destroy
+    redirect_to new_my_follow_request_path, flash: { success: "You disallowed #{@follow_request.sender.name} from following you anymore!" }
   end
 
   private
@@ -57,10 +57,10 @@ class My::FollowRequestsController < My::BaseController
   end
 
   def prepare_follow_requests
-    @unaccepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: %w(pending rejected))
-    @accepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: ['accepted'])
-    @recieved_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['pending'])
-    @accepted_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['accepted'])
+    @unaccepted_sent_requests = FollowRequest.sent_unaccepted.where(sender_id: current_user.id)
+    @accepted_sent_requests   = FollowRequest.accepted.where(sender_id: current_user.id)
+    @recieved_follow_requests = FollowRequest.pending.where(recipient_id: current_user.id)
+    @accepted_follow_requests = FollowRequest.accepted.where(recipient_id: current_user.id)
     @sent_to = []
     @unaccepted_sent_requests.each do |request|
       @sent_to.push(request.recipient_id)

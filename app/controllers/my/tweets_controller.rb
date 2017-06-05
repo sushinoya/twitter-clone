@@ -22,7 +22,7 @@ class My::TweetsController < My::BaseController
   private
 
   def tweet_post_params
-    params.require(:tweet_form).permit(tweet:[:text])
+    params.require(:tweet_form).permit(tweet: [:text])
   end
 
   def prepare_tweet

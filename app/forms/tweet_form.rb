@@ -10,7 +10,7 @@ class TweetForm
   end
 
   def save
-     @tweet.save
+    @tweet.save
   end
 
 end
