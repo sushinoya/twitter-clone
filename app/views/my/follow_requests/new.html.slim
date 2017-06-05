@@ -14,7 +14,10 @@
         - unless @accepted_sent_requests.empty?
           h4 Following
           -@accepted_sent_requests.each do |follow_request|
-            p = follow_request.recipient.name
+            .button-text-holder
+              .text-inline
+                = follow_request.recipient.name
+              = button_to 'Unfollow', unfollow_my_follow_request_path(id: follow_request.id, recipient_id: follow_request.recipient.id), data: { confirm: "Unfollow #{follow_request.recipient.name}?" }, method: :delete, class: 'btn btn-danger btn-inline'
 
         - unless @unaccepted_sent_requests.empty?
           h4 Sent Requests

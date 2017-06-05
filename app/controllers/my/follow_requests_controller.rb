@@ -1,9 +1,9 @@
 class My::FollowRequestsController < My::BaseController
 
-  before_action :prepare_follow_request,   only: [:accept, :reject, :resend, :destroy]
-  before_action :prepare_follow_requests,  only: [:new]
+  before_action :prepare_follow_request,   only: [:accept, :reject, :resend, :destroy, :unfollow]
+  before_action :prepare_follow_request_types,  only: [:new]
   before_action :check_user_not_recipient, only: [:accept, :reject, :destroy]
-  before_action :check_user_not_sender,    only: [:resend]
+  before_action :check_user_not_sender,    only: [:resend, :unfollow]
 
   def new
   end
@@ -38,6 +38,11 @@ class My::FollowRequestsController < My::BaseController
     redirect_to new_my_follow_request_path, flash: { success: "You disallowed #{@follow_request.sender.name} from following you anymore!" }
   end
 
+  def unfollow
+    @follow_request.destroy
+    redirect_to new_my_follow_request_path, flash: { success: "#{current_user.name} unfollowed #{@follow_request.recipient.name}!" }
+  end
+
   private
 
   def check_user_not_recipient
@@ -56,7 +61,7 @@ class My::FollowRequestsController < My::BaseController
     @follow_request = FollowRequest.find(params[:id])
   end
 
-  def prepare_follow_requests
+  def prepare_follow_request_types
     @unaccepted_sent_requests = FollowRequest.sent_unaccepted.where(sender_id: current_user.id)
     @accepted_sent_requests   = FollowRequest.accepted.where(sender_id: current_user.id)
     @recieved_follow_requests = FollowRequest.pending.where(recipient_id: current_user.id)

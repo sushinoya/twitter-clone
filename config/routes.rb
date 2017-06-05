@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         put 'accept'
         put 'reject'
         put 'resend'
+        delete 'unfollow'
       end
     end
 
