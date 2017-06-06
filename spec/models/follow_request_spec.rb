@@ -17,8 +17,5 @@ RSpec.describe FollowRequest, type: :model do
     end
 
     it { is_expected.to validate_uniqueness_of(:sender).scoped_to(:recipient_id) }
-
-    # it { expect(subject).to validate_inclusion_of(:status).in_array(%[accepted rejected pending]) }
-
     it { is_expected.to define_enum_for(:status).with([:pending, :accepted, :rejected]) }
 end

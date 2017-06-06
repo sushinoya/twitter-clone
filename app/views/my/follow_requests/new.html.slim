@@ -6,7 +6,7 @@
 
       .text-center
 
-        -User.all.each do |user|
+        -@users.each do |user|
           - unless user == current_user or current_user.requested.include? user
             = user.name
             = button_to 'Follow', my_follow_requests_path(recipient_id: user.id), data: { confirm: 'Send Follow Request?' }, method: :post, class: 'btn btn-primary btn-inline'

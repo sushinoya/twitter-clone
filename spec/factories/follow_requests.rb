@@ -13,7 +13,7 @@ FactoryGirl.define do
      end
 
      trait :invalid do
-       status nil
+       status ''
      end
    end
  end

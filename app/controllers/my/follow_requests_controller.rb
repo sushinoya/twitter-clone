@@ -6,6 +6,7 @@ class My::FollowRequestsController < My::BaseController
   before_action :check_user_not_sender,    only: [:resend]
 
   def new
+    @users = User.all
   end
 
   def create
@@ -56,15 +57,13 @@ class My::FollowRequestsController < My::BaseController
     @follow_request = FollowRequest.find(params[:id])
   end
 
-  def prepare_follow_requests
-    @unaccepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: %w(pending rejected))
-    @accepted_sent_requests = FollowRequest.where(sender_id: current_user.id, status: ['accepted'])
-    @recieved_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['pending'])
-    @accepted_follow_requests = FollowRequest.where(recipient_id: current_user.id, status: ['accepted'])
-    @sent_to = []
-    @unaccepted_sent_requests.each do |request|
-      @sent_to.push(request.recipient_id)
-    end
+  def prepare_follow_request_types
+    @unaccepted_sent_requests = FollowRequest.sent_unaccepted.where(sender_id: current_user.id)
+    @accepted_sent_requests   = FollowRequest.accepted.where(sender_id: current_user.id)
+    @recieved_follow_requests = FollowRequest.pending.where(recipient_id: current_user.id)
+    @accepted_follow_requests = FollowRequest.accepted.where(recipient_id: current_user.id)
+    @sent_to = @unaccepted_sent_requests.map(&:recipient_id)
+
   end
 
 end

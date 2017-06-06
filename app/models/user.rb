@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :email,    uniqueness: true
   validates :username, uniqueness: true, presence: true
-  validates :name,                       presence: true
+  validates :name, presence: true
   validates :status, length: { maximum: 40 }
 
 end
