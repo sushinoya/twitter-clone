@@ -1,4 +1,4 @@
-# May Interns Twitter Clone
+# Twitter Clone
 
 ## System Dependencies
 
@@ -10,13 +10,13 @@
 1. Get the codebase
 
   ```bash
-  git clone https://github.com/tinkerbox/may-interns-twitter-clone.git
+  git clone https://github.com/sushinoya/twitter-clone.git
   ```
 
 2. Install gem dependencies
 
   ```bash
-  cd may-interns-twitter-clone
+  cd twitter-clone
   bundle install
   ```
 
@@ -106,27 +106,3 @@ Local development branch naming:
 - `enhance/<your-branch-name>` for minor feature or function enhancement
 - `bugfix/<your-branch-name>` for bug fixes
 
-## Deployment
-
-We deploy our application to heroku. Automatic deployment has been setup for our staging environment as documented [here](https://devcenter.heroku.com/articles/github-integration#automatic-deploys). To manually deploy to heroku with Git, you need to:
-
-1. Register a heroku account and request access to staging and production applications
-2. Install [heroku toolbelt](https://toolbelt.heroku.com/) which is a CLI tool for creating and managing Heroku apps
-3. Setup heroku remote for staging and production
-
-  ```bash
-  # Setup heroku remote for production
-  heroku git:remote -a may-interns-twitter-clone -r production
-
-  # Setup heroku remote for staging
-  heroku git:remote -a may-interns-twitter-clone-staging -r staging
-  ```
-4. Manual deployment with Git
-
-  ```bash
-  # Deploy to production with Git
-  git push production master
-
-  # Deploy to staging with Git
-  git push staging master
-  ```
