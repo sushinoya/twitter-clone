@@ -1,0 +1,45 @@
+.container
+
+  .row
+
+    .col-sm-2.col-sm-offset-5
+
+      .text-center
+
+        -User.all.each do |user|
+          - unless user == current_user or current_user.requested.include? user
+            = user.name
+            = button_to 'Follow', my_follow_requests_path(recipient_id: user.id), data: { confirm: 'Send Follow Request?' }, method: :post, class: 'btn btn-primary btn-inline'
+
+        - unless @accepted_sent_requests.empty?
+          h4 Following
+          -@accepted_sent_requests.each do |follow_request|
+            .button-text-holder
+              .text-inline
+                = follow_request.recipient.name
+              = button_to 'Unfollow', unfollow_my_follow_request_path(id: follow_request.id, recipient_id: follow_request.recipient.id), data: { confirm: "Unfollow #{follow_request.recipient.name}?" }, method: :delete, class: 'btn btn-danger btn-inline'
+
+        - unless @unaccepted_sent_requests.empty?
+          h4 Sent Requests
+          -@unaccepted_sent_requests.each do |follow_request|
+            .button-text-holder
+              .text-inline
+                = follow_request.recipient.name
+              = button_to 'Resend', resend_my_follow_request_path(id: follow_request.id, recipient_id: follow_request.recipient.id), data: { confirm: 'Resend Follow Request?' }, method: :put, class: 'btn btn-primary btn-inline'
+
+        - unless @recieved_follow_requests.empty?
+          h4 Recieved Requests
+          -@recieved_follow_requests.each do |follow_request|
+            .button-text-holder
+              .text-inline
+                = follow_request.sender.name
+              = button_to 'Accept', accept_my_follow_request_path(id: follow_request.id, sender_id: follow_request.sender.id), data: { confirm: 'Accept Follow Request?' }, method: :put, class: 'btn btn-primary btn-inline'
+              = button_to 'Reject', reject_my_follow_request_path(id: follow_request.id, sender_id: follow_request.sender.id), data: { confirm: 'Reject Follow Request?' }, method: :put, class: 'btn btn-danger btn-inline'
+
+        - unless @accepted_follow_requests.empty?
+          h4 Accepted Requests
+          -@accepted_follow_requests.each do |follow_request|
+            .button-text-holder
+              .text-inline
+                = follow_request.sender.name
+              = button_to 'Disallow', my_follow_request_path(id: follow_request.id, sender_id: follow_request.sender.id), data: { confirm: "Disallow #{follow_request.sender.name} to follow you anymore?" }, method: :delete, class: 'btn btn-danger btn-inline'

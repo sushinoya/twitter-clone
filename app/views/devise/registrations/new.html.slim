@@ -5,16 +5,15 @@
     .col-sm-4.col-sm-offset-4
 
       .text-center
-        h1 Welcome to Twitter!
         h2 Sign Up
 
       = simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |form|
 
-        = form.input :name
-        = form.input :username
-        = form.input :email
-        = form.input :password
-        = form.input :password_confirmation
+        = form.input :name, label: false, placeholder: 'Your Name'
+        = form.input :username, label: false, placeholder: 'Username', hint: 'For eg, @sushinoya (without the @)'
+        = form.input :email, label: false, placeholder: 'Your Email'
+        = form.input :password, label: false, placeholder: 'Password'
+        = form.input :password_confirmation, label: false, placeholder: 'Re-enter Password'
 
         = form.button :submit, 'Sign Up', class: 'btn btn-primary'
 

@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522131638) do
+ActiveRecord::Schema.define(version: 20170524071051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "follow_requests", force: :cascade do |t|
+    t.integer "sender_id",                null: false
+    t.integer "recipient_id",             null: false
+    t.integer "status",       default: 0
+  end
+
+  add_index "follow_requests", ["recipient_id"], name: "index_follow_requests_on_recipient_id", using: :btree
+  add_index "follow_requests", ["sender_id", "recipient_id"], name: "index_follow_requests_on_sender_id_and_recipient_id", unique: true, using: :btree
+  add_index "follow_requests", ["sender_id"], name: "index_follow_requests_on_sender_id", using: :btree
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170522131638) do
     t.string   "encrypted_password",                default: "", null: false
     t.string   "name",                                           null: false
     t.string   "username",                                       null: false
-    t.string   "status",                 limit: 20
+    t.string   "status",                 limit: 50
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

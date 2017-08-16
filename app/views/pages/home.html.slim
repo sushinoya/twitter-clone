@@ -2,50 +2,30 @@
 
   .row
 
-    .col-sm-6.col-sm-offset-3
+    .col-sm-3.col-sm-offset-9
+      - if current_user
+        h3 "He who thinks he can and he who thinks he can't are both usually right."
+        h3 "The way one moves ahead is by getting started"
+        h3 "Its not about how hard you hit but how hard you get hit and keep moving forward"
 
-      -if current_user
-        .text-center
-          h2  Welcome #{current_user.name}!
+        h1 Okay enough with the quotes!
+        h3 Oh I didn't realise you were already logged on. Press the button to return back to Twitter
 
-          -unless current_user.status == '' or current_user.status == nil
-            p
-              b Your Status:&nbsp
-              = "#{current_user.status}"
+        = button_to 'Press Me!', my_root_path, method: :get, class: 'btn btn-warning'
 
-            p = "(Updated on #{current_user.updated_at.localtime.strftime("%d %b %y")})"
+      - else
+        h2 Sign Up
 
-          .form-container
-            = simple_form_for @user, url: update_status_path, method: :put do |form|
-              .form-input_area
-                = form.input :status, placeholder: 'New Status', label: false, input_html: { maxlength: 20, value: ''}
-              = form.button :submit, 'Update Status', class: 'btn btn-primary form-btn'
-          br
+        = simple_form_for :user, url: registration_path(:user) do |form|
 
-          .form-container
-            = simple_form_for @tweet_form, url: tweets_path, method: :post do |form|
-              = form.fields_for :tweet do |tweet_create_form|
-                .form-input_area
-                  = tweet_create_form.input :text, :placeholder => 'New Tweet', label: false, input_html: { minlength: 10, maxlength: 140, value: ''}
-              = form.button :submit, 'Tweet', class: 'btn btn-warning form-btn'
+          = form.input :name, label: false, placeholder: 'Your Name'
+          = form.input :username, label: false, placeholder: 'Username', hint: 'For eg, @sushinoya'
+          = form.input :email, label: false, placeholder: 'Your Email'
+          = form.input :password, label: false, placeholder: 'Password'
+          = form.input :password_confirmation, label: false, placeholder: 'Re-enter Password'
 
-      -else
-        .text-center
-          h2 Welcome to Twitter!
+          = form.button :submit, 'Sign Up', class: 'btn btn-primary'
 
-      -if current_user
-        -unless current_user.tweets.empty?
-          .tweet-container
-            h4 Your Tweets:
-          - @tweets.each do |tweet|
-            .tweet-container
-              .tweet
-                = tweet.text
-              = button_to '×', tweet_path(tweet), data: { confirm: 'Are you sure you want to delete the tweet?' }, method: :delete, class: 'btn-xs delete-btn'
-
-      .text-center
-        h4 All Public Tweets:
-        -@tweets.each do |tweet|
-          p
-            b = "#{tweet.user.username}: "
-            = "#{tweet.text} (Posted on #{tweet.created_at.localtime.strftime("%d %b %y")})"
+        br
+        p Already Have an account?
+        = link_to 'Sign In', new_user_session_path

@@ -35,4 +35,3 @@ is important, please refer to these resources: [1][1], [2][2], [3][3].
 [1]: https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
 [2]: http://chris.beams.io/posts/git-commit/
 [3]: https://github.com/blog/1943-how-to-write-the-perfect-pull-request
-

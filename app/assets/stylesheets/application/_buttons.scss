@@ -1,0 +1,24 @@
+.button-text-holder {
+  display: table;
+  min-height: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+    .text-inline {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .btn-inline {
+      display: table-cell;
+      vertical-align: center;
+      text-align: left;
+      margin-left: 20px;
+      margin-top: 5px;
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+}

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StatusUpdateController, type: :controller do
+RSpec.describe My::StatusUpdateController, type: :controller do
 
   let(:user) { create(:user) }
 
@@ -8,15 +8,15 @@ RSpec.describe StatusUpdateController, type: :controller do
 
   describe 'PUT/PATCH #update' do
 
-    before { put :update, user: params }
+    before { put :update, status_update_form: params }
 
     context 'when user status updates successfully' do
 
       let(:params) do
-        { status: 'status' }
+        { user: { status: 'status' } }
       end
 
-      it { expect(response).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(my_root_path) }
       it { is_expected.to set_flash[:success] }
 
     end
@@ -24,10 +24,10 @@ RSpec.describe StatusUpdateController, type: :controller do
     context 'when user status updates unsuccessfully' do
 
       let(:params) do
-        { status: 'this string is 33 characters long'}
+        { user: { status: 'this string is  > 50 characters long and it will not work so yeah this should fail' } }
       end
 
-      it { expect(response).to redirect_to(root_path) }
+      it { expect(response).to redirect_to(my_root_path) }
       it { is_expected.to set_flash[:error] }
 
     end
