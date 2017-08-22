@@ -1,5 +1,17 @@
 # Twitter Clone
 
+This is a basic clone of Twitter built using Ruby on Rails. Instead of design, the project focuses more on using a clean and well-tested codebase to implement the fundamental functionalities of any platform such as Twitter.
+
+Screenshots:
+
+<img width="1280" alt="screen shot 2017-08-22 at 10 31 33 pm" src="https://user-images.githubusercontent.com/23443586/29573472-a44c8096-8791-11e7-8c05-bae389e2f9f2.png">
+
+<img width="1280" alt="screen shot 2017-08-22 at 11 26 57 pm" src="https://user-images.githubusercontent.com/23443586/29573700-41fc1c34-8792-11e7-9048-6f7a09c0af3c.png">
+
+<img width="1280" alt="screen shot 2017-08-22 at 11 32 16 pm" src="https://user-images.githubusercontent.com/23443586/29573673-302e2b82-8792-11e7-9b73-930b7c504401.png">
+
+
+
 ## System Dependencies
 
 1. [PostgreSQL](https://www.postgresql.org/) at least version 9.4
